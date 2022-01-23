@@ -1,8 +1,8 @@
 .PHONY: run
 
-all: gridsolver run 
+all: gridsolver run
 
-gridsolver:
+gridsolver: main.c util.c
 	gcc -o gridsolver main.c util.c
 	chmod a+x gridsolver
 
