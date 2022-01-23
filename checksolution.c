@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "util.h"
 
-int isSudoku(int solution[4][4]){
+bool isSudoku(int solution[4][4]){
     // check if the index - 1 is present in a row or in a column
     int isPresentRow[4];
     int isPresentCol[4];
@@ -73,7 +74,7 @@ Constraints countVisibles(int solution[4][4]){
     return visibles;
 }
 
-int areConstraintsEqual(Constraints c1, Constraints c2){
+bool areConstraintsEqual(Constraints c1, Constraints c2){
     for (int i=0;i<4;i++){
         if (
             c1.north[i]!=c2.north[i]
@@ -87,7 +88,7 @@ int areConstraintsEqual(Constraints c1, Constraints c2){
     return 1;
 }
 
-int isSolution(Constraints constraints, int solution[4][4]){
+bool isSolution(Constraints constraints, int solution[4][4]){
     Constraints visibles = countVisibles(solution);
     return areConstraintsEqual(constraints, visibles) && isSudoku(solution);
 }
