@@ -46,7 +46,7 @@ Constraints read_constraints(char* filename){
 };
 
 
-void print_grid(Constraints constraints){
+void print_grid(Constraints constraints, int solution[4][4]){
     printf("\n | ");
     for(int i=0; i < 4; i++){
         printf("%d ", constraints.north[i]);
@@ -54,8 +54,11 @@ void print_grid(Constraints constraints){
     printf("| \n");
     printf("-+---------+-\n");
     for (int i=0; i < 4; i++){
-        printf("%d|         |", constraints.west[i]);
-        printf("%d\n", constraints.east[i]);
+        printf("%d| ", constraints.west[i]);
+        for (int j=0; j<4; j++){
+            printf("%d ", solution[i][j]);
+        }
+        printf("|%d\n", constraints.east[i]);
     }
     printf("-+---------+-\n | ");
     for(int i=0; i < 4; i++){
@@ -63,3 +66,4 @@ void print_grid(Constraints constraints){
     }
     printf("| \n\n");
 };
+

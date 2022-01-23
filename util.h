@@ -10,6 +10,6 @@ typedef struct Constraints{
 
 Constraints read_constraints(char* filename);
 
-void print_grid(Constraints constraints);
+void print_grid(Constraints constraints, int solution[4][4]);
 
 #endif
