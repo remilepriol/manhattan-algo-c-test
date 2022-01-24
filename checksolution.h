@@ -4,8 +4,6 @@
 #include <stdbool.h>
 #include "util.h"
 
-bool isSudokuRow(int solution[4][4]);
-bool isSudokuCol(int solution[4][4]);
 bool isSudoku(int solution[4][4]);
 
 Constraints countVisibles(int solution[4][4]);
