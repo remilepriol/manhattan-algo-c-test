@@ -7,4 +7,6 @@ gridsolver: main.c util.c checksolution.c
 	chmod a+x gridsolver
 
 run: gridsolver
-	./gridsolver
+	./gridsolver test_remi.txt
+	./gridsolver test_remi1.txt
+	./gridsolver test_remi2.txt
