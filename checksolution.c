@@ -19,11 +19,11 @@ bool isSudoku(int solution[4][4]){
         }
         for (int j=0;j<4;j++){
             if(isPresentRow[j]==0 || isPresentCol[j]==0){
-                return 0;
+                return false;
             }
         }
     }
-    return 1;
+    return true;
 }
 
 Constraints countVisibles(int solution[4][4]){
@@ -82,10 +82,41 @@ bool areConstraintsEqual(Constraints c1, Constraints c2){
             || c1.east[i]!=c2.east[i]
             || c1.west[i]!=c2.west[i]
         ){
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
+}
+
+bool checkColConstraints(Constraints constraints, int solution[4][4]){
+    int count;
+    int max;
+    for (int i=0;i<4;i++){
+        count = 0;
+        max = 0;
+        for (int j=0;j<4;j++){
+            if (solution[j][i]>max){
+                max = solution[j][i];
+                count++;
+            }
+        }
+        if (constraints.north[i]!=count){
+            return false;
+        }
+
+        count = 0;
+        max = 0;
+        for (int j=0;j<4;j++){
+            if (solution[3-j][i]>max){
+                max = solution[3-j][i];
+                count++;
+            }
+        }
+        if (constraints.south[i]!=count){
+            return false;
+        }
+    }
+    return true;
 }
 
 bool isSolution(Constraints constraints, int solution[4][4]){

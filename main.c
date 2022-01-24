@@ -115,7 +115,7 @@ int main(int argc, char **argv){
     // Then for each row, iterate over possible SudokuVectors
     // in a depth first search
     // and check for sudoku satisfaction to remove branches
-    bool sudokuCol;
+    bool sudokuCol, constraintsCol;
     for (int i1 =0; i1<possibleRowCount[constraints.west[0]-1][constraints.east[0]-1];i1++){
         for (int k=0;k<4;k++){
             solution[0][k] = possibleRows[constraints.west[0]-1] [constraints.east[0]-1][i1][k];
@@ -146,10 +146,17 @@ int main(int argc, char **argv){
                 }
 
                 for (int i4 =0; i4<possibleRowCount[constraints.west[3]-1][constraints.east[3]-1];i4++){
+                    sudokuCol = true;
                     for (int k=0;k<4;k++){
                         solution[3][k] = possibleRows[constraints.west[3]-1] [constraints.east[3]-1][i4][k];
+                        if (solution[3][k]==solution[0][k]
+                            ||solution[3][k]==solution[1][k]
+                            ||solution[3][k]==solution[2][k]){
+                            sudokuCol=false;
+                        }
                     }
-                    if (isSolution(constraints, solution)){
+
+                    if (sudokuCol&checkColConstraints(constraints, solution)){
                         print_grid(constraints, solution);
                     }
                 }
