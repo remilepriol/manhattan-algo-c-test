@@ -18,7 +18,7 @@ Constraints read_constraints(char* filename){
     // read one line at a time and store them in constraints
     char buffer[MAX_BUF];
     while (fgets(buffer, MAX_BUF, fp)){
-        printf("%s", buffer);
+        // printf("%s", buffer);
         if (buffer[0]=='N'){
             for (int i=0; i<4; i++){
                 constraints.north[i] = (int) buffer[(i+1)*2] - '0';
@@ -47,7 +47,7 @@ Constraints read_constraints(char* filename){
 
 
 void print_grid(Constraints constraints, int solution[4][4]){
-    printf("\n | ");
+    printf(" | ");
     for(int i=0; i < 4; i++){
         printf("%d ", constraints.north[i]);
     }
