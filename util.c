@@ -12,6 +12,8 @@ Constraints read_constraints(char* filename){
     FILE*  fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("Error: could not open file %s\n", filename);
+    } else {
+        printf("Reading file %s\n", filename);
     }
 
     Constraints constraints;
