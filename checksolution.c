@@ -3,27 +3,48 @@
 #include <stdbool.h>
 #include "util.h"
 
-bool isSudoku(int solution[4][4]){
-    // check if the index - 1 is present in a row or in a column
-    int isPresentRow[4];
-    int isPresentCol[4];
-
+bool isSudokuCol(int solution[4][4]){
+    // check if each number appears no more than once in each column
+    int isPresent[5];
     for (int i=0;i<4;i++){
-        for (int j=0;j<4;j++){
-            isPresentRow[j] = 0;
-            isPresentCol[j] = 0;
+        for (int j=0;j<5;j++){
+            isPresent[j] = 0;
         }
         for (int j=0;j<4;j++){
-            isPresentRow[solution[i][j]-1] = 1;
-            isPresentCol[solution[j][i]-1] = 1;
+            isPresent[solution[j][i]] += 1;
         }
-        for (int j=0;j<4;j++){
-            if(isPresentRow[j]==0 || isPresentCol[j]==0){
+        for (int j=1;j<5;j++){
+            // check if some number in 1,2,3,4 appears more than once
+            if(isPresent[j]>1){
                 return 0;
             }
         }
     }
     return 1;
+}
+
+bool isSudokuRow(int solution[4][4]){
+    // check if the index is present in a row
+    int isPresent[5];
+    for (int i=0;i<4;i++){
+        for (int j=0;j<5;j++){
+            isPresent[j] = 0;
+        }
+        for (int j=0;j<4;j++){
+            isPresent[solution[i][j]] += 1;
+        }
+        for (int j=1;j<5;j++){
+            // check if some number in 1,2,3,4 appears more than once
+            if(isPresent[j]>1){
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+bool isSudoku(int solution[4][4]){
+    return isSudokuRow(solution) && isSudokuCol(solution);
 }
 
 Constraints countVisibles(int solution[4][4]){
